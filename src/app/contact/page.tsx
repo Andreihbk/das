@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "../../components/Navbar"; // Import the Navbar
+import Navbar from "../components/Navbar"; // Import the Navbar
 
 export default function Contact() {
     return (
