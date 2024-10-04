@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from "../components/Navbar"; // Import the Navbar
+import Footer from "./../components/Footer"; // Import the Footer
 import '../globals.css';
 
 export default function About() {
@@ -42,6 +43,7 @@ export default function About() {
           </p>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }
