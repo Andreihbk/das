@@ -14,7 +14,7 @@ export default function About() {
         <section className="max-w-2xl text-center mb-12">
           <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
           <p className="text-lg">
-            Our mission is to deliver exceptional service and high-quality products that meet our customers' needs.
+            Our mission is to deliver exceptional service and high-quality products that meet our customers&quot;' needs.
           </p>
         </section>
 
