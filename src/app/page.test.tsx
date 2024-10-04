@@ -4,10 +4,19 @@ import '@testing-library/jest-dom';
 import Home from './page'; // Adjusted import to point to `page.tsx`
 
 describe('Home Component', () => {
-  it('should render the main elements correctly', () => {
+  beforeEach(() => {
+    // Render the Home component before each test
     render(<Home />);
+  });
 
-    // Check if the logo image is displayed
+  it('should render the main elements correctly', () => {
+    // Check if the spinner is displayed first
+    expect(screen.getByRole('status')).toBeInTheDocument();
+
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
+
+    // Now check if the logo image is displayed
     const logo = screen.getByAltText(/business logo/i);
     expect(logo).toBeInTheDocument();
 
@@ -25,7 +34,8 @@ describe('Home Component', () => {
   });
 
   it('should render the Contact Us button in the call-to-action section', () => {
-    render(<Home />);
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
 
     const contactButton = screen.getByText(/contact us/i);
     expect(contactButton).toBeInTheDocument();
@@ -33,13 +43,14 @@ describe('Home Component', () => {
   });
 
   it('should render the Navbar and Footer components', () => {
-    render(<Home />);
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
 
     // Check if the Navbar is displayed
     const navbar = screen.getByRole('navigation');
     expect(navbar).toBeInTheDocument();
 
-    // Check if the Footer is displayed with the Learn, Examples, and Go to nextjs.org links
+    // Check if the Footer is displayed
     const footer = screen.getByRole('contentinfo');
     expect(footer).toBeInTheDocument();
 
@@ -54,7 +65,8 @@ describe('Home Component', () => {
   });
 
   it('should render the hero section correctly', () => {
-    render(<Home />);
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
 
     const heroHeading = screen.getByText(/welcome to our business/i);
     expect(heroHeading).toBeInTheDocument();
