@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from 'react';
 import Navbar from "../components/Navbar"; // Adjust path if necessary
 import Footer from "../components/Footer"; // Adjust path if necessary
+import '../globals.css';
 
 const servicesData = [
   {
