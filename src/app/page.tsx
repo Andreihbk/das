@@ -23,16 +23,16 @@ export default function Home() {
           />
         </section>
 
-        {/* Services Section */}
+        {/* Services, Features, and Testimonials Section */}
         <section className="flex flex-col sm:flex-row justify-around w-full">
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
+          <Link href="/services" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
             <h2 className="font-semibold text-lg">Our Services</h2>
             <p className="mt-2">We offer a variety of services to help you succeed.</p>
-          </div>
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
+          </Link>
+          <Link href="/features" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
             <h2 className="font-semibold text-lg">Features</h2>
             <p className="mt-2">Discover the unique features that set us apart.</p>
-          </div>
+          </Link>
           <Link href="/testimonials" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
             <h2 className="font-semibold text-lg">Testimonials</h2>
             <p className="mt-2">Hear what our satisfied clients say about us.</p>
