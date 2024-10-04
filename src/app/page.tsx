@@ -33,10 +33,10 @@ export default function Home() {
             <h2 className="font-semibold text-lg">Features</h2>
             <p className="mt-2">Discover the unique features that set us apart.</p>
           </div>
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
+          <Link href="/testimonials" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
             <h2 className="font-semibold text-lg">Testimonials</h2>
             <p className="mt-2">Hear what our satisfied clients say about us.</p>
-          </div>
+          </Link>
         </section>
 
         {/* Call to Action */}
