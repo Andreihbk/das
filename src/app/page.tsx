@@ -8,14 +8,14 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900">
       <Navbar />
+
       <main className="flex flex-col gap-16 flex-grow items-center">
         {/* Hero Section */}
-        <section className="text-center flex flex-col items-center max-w-3xl w-full">
+        <section className="flex flex-col justify-center items-center h-screen text-center">
           <h1 className="text-3xl sm:text-5xl font-bold">Welcome to Our Business</h1>
           <p className="mt-4 text-lg sm:text-xl">We provide the best solutions for your needs.</p>
-        </section>
 
-        {/* Services, Features, and Testimonials Section */}
+                  {/* Services, Features, and Testimonials Section */}
         <section className="flex flex-col sm:flex-row justify-center items-center w-full max-w-6xl">
           <Link href="/services" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs">
             <h2 className="font-semibold text-lg">Our Services</h2>
@@ -30,15 +30,18 @@ export default function Home() {
             <p className="mt-2">Hear what our satisfied clients say about us.</p>
           </Link>
         </section>
+        </section>
 
-        {/* Dynamic Image Section */}
+
+
+        {/* Full Width Image Section */}
         <section className="w-full flex justify-center">
           <Image
-            className="mt-4 object-contain max-w-full h-auto"
+            className="mt-4 object-contain w-full h-auto"
             src="/1.jpg"
             alt="Business logo"
-            width={500} // Define a width suitable for your design
-            height={300} // Define a height suitable for your design
+            width={1500} // Set width for your image
+            height={600} // Set height for your image
             priority
           />
         </section>
