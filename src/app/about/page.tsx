@@ -18,6 +18,7 @@ export default function About() {
           <p className="text-lg">
             Our mission is to deliver exceptional service and high-quality products that meet our customers&#39; needs.
           </p>
+        </section> {/* Closing tag for the first section */}
 
         <section className="max-w-2xl text-center mb-12">
           <h2 className="text-2xl font-semibold mb-4">Meet the Team</h2>
