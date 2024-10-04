@@ -4,35 +4,55 @@ import '@testing-library/jest-dom';
 import Home from './page'; // Adjusted import to point to `page.tsx`
 
 describe('Home Component', () => {
-  it('should render the main elements correctly', () => {
+  beforeEach(() => {
+    // Render the Home component before each test
     render(<Home />);
+  });
 
-    // Check if the logo image is displayed
+  it('should render the main elements correctly', () => {
+    // Check if the spinner is displayed first
+    expect(screen.getByRole('status')).toBeInTheDocument();
+
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
+
+    // Now check if the logo image is displayed
     const logo = screen.getByAltText(/business logo/i);
     expect(logo).toBeInTheDocument();
 
-    // Check if the "About Us" link is displayed
-    const aboutLink = screen.getByText(/about us/i);
-    expect(aboutLink).toBeInTheDocument();
+    // Check if the "Our Services" link is displayed
+    const servicesLink = screen.getByText(/our services/i);
+    expect(servicesLink).toBeInTheDocument();
 
-    // Check if the "Contact Us" link is displayed
-    const contactLink = screen.getByText(/contact us/i);
-    expect(contactLink).toBeInTheDocument();
+    // Check if the "Features" link is displayed
+    const featuresLinks = screen.getAllByText(/features/i);
+    expect(featuresLinks.length).toBeGreaterThan(0); // Ensures at least one instance is found
+
+    // Check if the "Testimonials" link is displayed
+    const testimonialsLinks = screen.getAllByText(/testimonials/i);
+    expect(testimonialsLinks.length).toBeGreaterThan(0); // Ensures at least one instance is found
   });
 
-  it('should render the deployment button with the correct text', () => {
-    render(<Home />);
+  it('should render the Contact Us button in the call-to-action section', () => {
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
 
-    const deployButton = screen.getByText(/deploy now/i);
-    expect(deployButton).toBeInTheDocument();
-    expect(deployButton.closest('a')).toHaveAttribute(
-      'href',
-      'https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
-    );
+    const contactButton = screen.getByText(/contact us/i);
+    expect(contactButton).toBeInTheDocument();
+    expect(contactButton.closest('a')).toHaveAttribute('href', '/contact');
   });
 
-  it('should render the Learn, Examples, and Go to nextjs.org links in the footer', () => {
-    render(<Home />);
+  it('should render the Navbar and Footer components', () => {
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
+
+    // Check if the Navbar is displayed
+    const navbar = screen.getByRole('navigation');
+    expect(navbar).toBeInTheDocument();
+
+    // Check if the Footer is displayed
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toBeInTheDocument();
 
     const learnLink = screen.getByText(/learn/i);
     expect(learnLink).toBeInTheDocument();
@@ -44,10 +64,14 @@ describe('Home Component', () => {
     expect(goToNextLink).toBeInTheDocument();
   });
 
-  it('should render the text to edit the source file correctly', () => {
-    render(<Home />);
+  it('should render the hero section correctly', () => {
+    // Use a timer to wait for the loading state to change
+    jest.advanceTimersByTime(20);
 
-    const codeElement = screen.getByText(/get started by editing/i);
-    expect(codeElement).toBeInTheDocument();
+    const heroHeading = screen.getByText(/welcome to our business/i);
+    expect(heroHeading).toBeInTheDocument();
+
+    const heroSubheading = screen.getByText(/we provide the best solutions for your needs/i);
+    expect(heroSubheading).toBeInTheDocument();
   });
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from "../components/Navbar"; // Import the Navbar
+import Footer from "./../components/Footer"; // Import the Footer
 
 export default function Contact() {
     return (
@@ -11,6 +12,7 @@ export default function Contact() {
           Feel free to reach out to us via email at: <strong>contact@example.com</strong>
         </p>
       </div>
+      <Footer />
       </div>
     );
   }
