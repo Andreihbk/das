@@ -1,5 +1,0 @@
-# Specify code owners for all files
-* @Dani1232312 @Andreihbk
-
-# Specify code owners for specific directories
-/src/ @Dani1232312 @Andreihbk
