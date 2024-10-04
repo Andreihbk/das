@@ -1,4 +1,8 @@
 module.exports = {
+    transform: {
+      "^.+\\.[tj]sx?$": "@swc/jest",
+    },
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     testEnvironment: 'jsdom',
     moduleNameMapper: {
       // Handle image imports
