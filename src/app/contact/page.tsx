@@ -2,30 +2,42 @@
 
 import React, { useState } from "react";
 
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: ''
   });
 
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
-  const [messageType, setMessageType] = useState("info"); // Added messageType state
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<"info" | "success" | "error">("info");
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Basic validation
+    if (!formData.name || !formData.message) {
+      setMessageType("error");
+      setMessage("Name and message fields cannot be empty.");
+      return;
+    }
+
     if (!validateEmail(formData.email)) {
       setMessageType("error");
       setMessage("Please enter a valid email address.");
@@ -46,19 +58,19 @@ export default function Contact() {
 
       const result = await res.json();
       if (res.ok) {
-        setMessageType("success"); // Set message type to success
-        setMessage(result.message); // Show success message
+        setMessageType("success");
+        setMessage(result.message);
         setFormData({ name: '', email: '', message: '' }); // Reset form fields
       } else {
-        setMessageType("error"); // Set message type to error
-        setMessage(result.error); // Show error message
+        setMessageType("error");
+        setMessage(result.error);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      setMessageType("error"); // Set message type to error
+      setMessageType("error");
       setMessage("An error occurred while submitting the form.");
     } finally {
-      setLoading(false); // Stop loading indicator
+      setLoading(false);
     }
   };
 
@@ -68,7 +80,10 @@ export default function Contact() {
         <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
         {loading && <div>Loading...</div>}
         {message && (
-          <div className={`mt-4 p-2 rounded ${messageType === 'success' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
+          <div
+            aria-live="polite"
+            className={`mt-4 p-2 rounded ${messageType === 'success' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}
+          >
             {message}
           </div>
         )}
@@ -79,7 +94,7 @@ export default function Contact() {
           <div className="mb-4">
             <label className="block text-lg mb-2">Name</label>
             <input
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
               type="text"
               name="name"
               value={formData.name}
@@ -90,7 +105,7 @@ export default function Contact() {
           <div className="mb-4">
             <label className="block text-lg mb-2">Email</label>
             <input
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
               type="email"
               name="email"
               value={formData.email}
@@ -101,7 +116,7 @@ export default function Contact() {
           <div className="mb-4">
             <label className="block text-lg mb-2">Message</label>
             <textarea
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
               name="message"
               value={formData.message}
               onChange={handleChange}
@@ -110,7 +125,8 @@ export default function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={loading}
           >
             Submit
           </button>
