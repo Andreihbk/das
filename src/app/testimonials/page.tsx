@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from 'react';
-import Navbar from "../components/Navbar"; // Adjust path if necessary
-import Footer from "../components/Footer"; // Adjust path if necessary
 import '../globals.css';
 
 const testimonialsData = [
@@ -23,7 +21,7 @@ const testimonialsData = [
 export default function Testimonials() {
   return (
     <div className="flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Navbar />
+    
       <main className="flex flex-col gap-8 flex-grow items-center sm:items-start">
         <h1 className="text-3xl sm:text-5xl font-bold text-center">What Our Clients Say</h1>
         <section className="flex flex-col sm:flex-row justify-around w-full">
@@ -46,7 +44,7 @@ export default function Testimonials() {
           Back to Home
         </Link>
       </main>
-      <Footer />
+     
     </div>
   );
 }

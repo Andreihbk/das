@@ -1,12 +1,10 @@
 import React from 'react';
-import Navbar from "../components/Navbar"; // Import the Navbar
-import Footer from "./../components/Footer"; // Import the Footer
 import '../globals.css';
 
 export default function About() {
   return (
     <div className="min-h-screen">
-      <Navbar />
+    
       <div className="flex flex-col items-center justify-center min-h-screen p-8">
         <h1 className="text-3xl font-bold mb-4">About Us</h1>
         <p className="text-lg text-center mb-8">
@@ -43,7 +41,6 @@ export default function About() {
           </p>
         </section>
       </div>
-      <Footer />
     </div>
   );
 }
