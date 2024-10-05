@@ -28,13 +28,15 @@ export default function Features() {
         <section className="flex flex-col sm:flex-row justify-around w-full">
           {featuresData.map((feature, index) => (
             <div key={index} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
-              <Image
-                src={feature.image}
-                alt={feature.title}
-                width={100}
-                height={100}
-                className="rounded mb-4"
-              />
+              <div className="flex justify-center mb-4"> {/* Center the image */}
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  width={100}
+                  height={100}
+                  className="rounded"
+                />
+              </div>
               <h2 className="font-semibold text-lg">{feature.title}</h2>
               <p className="mt-2">{feature.description}</p>
             </div>
