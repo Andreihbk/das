@@ -8,7 +8,7 @@ module.exports = {
     // Handle image imports
     '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js',
     // Handle CSS imports, including `globals.css` at various levels
-    '\\.css$': 'identity-obj-proxy',
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 };
