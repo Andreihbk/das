@@ -30,13 +30,15 @@ export default function Services() {
         <section className="flex flex-col sm:flex-row justify-around w-full">
           {servicesData.map((service, index) => (
             <div key={index} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2">
-              <Image
-                src={service.image}
-                alt={service.title}
-                width={100}
-                height={100}
-                className="rounded mb-4"
-              />
+              <div className="flex justify-center mb-4">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={100}
+                  height={100}
+                  className="rounded"
+                />
+              </div>
               <h2 className="font-semibold text-lg">{service.title}</h2>
               <p className="mt-2">{service.description}</p>
             </div>

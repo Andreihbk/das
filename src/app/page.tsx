@@ -34,15 +34,24 @@ export default function Home() {
 
           {/* Services, Features, and Testimonials Section */}
           <section className="flex flex-col sm:flex-row justify-center items-center w-full mt-16">
-            <Link href="/services" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs">
+            <Link 
+              href="/services" 
+              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+            >
               <h2 className="font-semibold text-lg">Our Services</h2>
               <p className="mt-2">We offer a variety of services to help you succeed.</p>
             </Link>
-            <Link href="/features" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs">
+            <Link 
+              href="/features" 
+              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+            >
               <h2 className="font-semibold text-lg">Features</h2>
               <p className="mt-2">Discover the unique features that set us apart.</p>
             </Link>
-            <Link href="/testimonials" className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs">
+            <Link 
+              href="/testimonials" 
+              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+            >
               <h2 className="font-semibold text-lg">Testimonials</h2>
               <p className="mt-2">Hear what our satisfied clients say about us.</p>
             </Link>
@@ -53,7 +62,7 @@ export default function Home() {
         <section className="w-full flex justify-center overflow-hidden">
           <div className="relative w-full h-60">
             <Image
-              className="absolute inset-0 object-cover"
+              className="absolute inset-0 object-cover w-full h-full" // Added w-full and h-full
               src="/1.jpg"
               alt="Business logo"
               fill

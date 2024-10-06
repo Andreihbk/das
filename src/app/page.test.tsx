@@ -1,36 +1,33 @@
 import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Home from './page'; // Adjusted import to point to `page.tsx`
+import Home from './page'; // Ensure the path points to `page.tsx`
 
-// Mock the timer for testing the loading state
 jest.useFakeTimers();
 
 describe('Home Component', () => {
   beforeEach(() => {
-    // Render the Home component before each test
     render(<Home />);
   });
 
   afterEach(() => {
-    jest.clearAllTimers(); // Clear all timers after each test
+    jest.clearAllTimers();
   });
 
-  it('should display the spinner initially and then the main content', () => {
-    // Check if the spinner is displayed first
+  it('should display the spinner initially and then show the main content', () => {
+    // Check if the spinner is displayed initially
     expect(screen.getByRole('status')).toBeInTheDocument();
 
-    // Use a timer to wait for the loading state to change
+    // Fast-forward timers to remove spinner and display content
     act(() => {
-      jest.runAllTimers(); // Run all timers to simulate the timeout
+      jest.runAllTimers();
     });
 
-    // Now check if the spinner is removed and main content is displayed
+    // Spinner should be removed
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
 
-    // Check if the main heading is displayed
-    const heroHeading = screen.getByText(/welcome to our business/i);
-    expect(heroHeading).toBeInTheDocument();
+    // Check the presence of main content elements
+    expect(screen.getByText(/welcome to our business/i)).toBeInTheDocument();
   });
 
   it('should render the image section correctly', () => {
@@ -38,27 +35,22 @@ describe('Home Component', () => {
       jest.runAllTimers();
     });
 
-    // Check if the logo image is displayed
-    const logo = screen.getByAltText(/business logo/i);
-    expect(logo).toBeInTheDocument();
+    // Validate if the business logo is displayed
+    expect(screen.getByAltText(/business logo/i)).toBeInTheDocument();
   });
 
-  it('should render the main links correctly', () => {
+  it('should render the main navigation links correctly', () => {
     act(() => {
       jest.runAllTimers();
     });
 
-    // Check if the "Our Services" link is displayed
-    const servicesLink = screen.getByText(/our services/i);
-    expect(servicesLink).toBeInTheDocument();
+    // Use a container to scope the query to the navigation menu
+    const navbar = screen.getByRole('navigation');
 
-    // Check if the "Features" link is displayed
-    const featuresLink = screen.getByText(/features/i);
-    expect(featuresLink).toBeInTheDocument();
-
-    // Check if the "Testimonials" link is displayed
-    const testimonialsLink = screen.getByText(/testimonials/i);
-    expect(testimonialsLink).toBeInTheDocument();
+    // Validate presence of key navigation links within the navigation menu
+    expect(navbar).toHaveTextContent(/home/i);
+    expect(navbar).toHaveTextContent(/about/i);
+    expect(navbar).toHaveTextContent(/contact/i);
   });
 
   it('should render the Contact Us button in the call-to-action section', () => {
@@ -66,48 +58,57 @@ describe('Home Component', () => {
       jest.runAllTimers();
     });
 
-    const contactButton = screen.getByText(/contact us/i);
-    expect(contactButton).toBeInTheDocument();
-    expect(contactButton.closest('a')).toHaveAttribute('href', '/contact');
+    // Validate multiple "Contact Us" buttons are rendered
+    const contactButtons = screen.getAllByRole('link', { name: /contact us/i });
+
+    // Check the first instance as the main call-to-action button
+    const callToActionButton = contactButtons[0];
+    expect(callToActionButton).toBeInTheDocument();
+    expect(callToActionButton).toHaveAttribute('href', '/contact');
   });
 
-  it('should render the Navbar and Footer components', () => {
+  it('should render the Navbar and Footer components correctly', () => {
     act(() => {
       jest.runAllTimers();
     });
 
-    // Check if the Navbar is displayed
-    const navbar = screen.getByRole('navigation');
-    expect(navbar).toBeInTheDocument();
+    // Check if Navbar is present
+    expect(screen.getByRole('navigation')).toBeInTheDocument();
 
-    // Check if the Footer is displayed
-    const footer = screen.getByRole('contentinfo');
-    expect(footer).toBeInTheDocument();
+    // Check if Footer is present
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 
-  it('should render the hero section correctly', () => {
+  it('should render the hero section content correctly', () => {
     act(() => {
       jest.runAllTimers();
     });
 
-    const heroHeading = screen.getByText(/welcome to our business/i);
-    expect(heroHeading).toBeInTheDocument();
-
-    const heroSubheading = screen.getByText(/we provide the best solutions for your needs/i);
-    expect(heroSubheading).toBeInTheDocument();
+    // Validate the hero section's heading and subheading
+    expect(screen.getByText(/welcome to our business/i)).toBeInTheDocument();
+    expect(screen.getByText(/we provide the best solutions for your needs/i)).toBeInTheDocument();
   });
 
-  it('should render additional content correctly', () => {
+  it('should render the additional content section correctly', () => {
     act(() => {
       jest.runAllTimers();
     });
 
-    // Check for the additional content heading
-    const moreInfoHeading = screen.getByText(/more information/i);
-    expect(moreInfoHeading).toBeInTheDocument();
+    // Validate the presence of more information heading
+    expect(screen.getByText(/more information/i)).toBeInTheDocument();
 
-    // Check for paragraphs in the additional content section
+    // Check if additional paragraphs are present
     const paragraphs = screen.getAllByText(/lorem ipsum|duis dapibus|morbi auctor/i);
-    expect(paragraphs.length).toBeGreaterThan(0); // Ensure there's at least one paragraph
+    expect(paragraphs.length).toBeGreaterThan(0);
+  });
+
+  it('should render the features card section correctly', () => {
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    // Use getAllByRole to target the heading in the features card section
+    const featuresHeadings = screen.getAllByRole('heading', { name: /features/i });
+    expect(featuresHeadings.length).toBe(1); // Ensure there's only one matching heading
   });
 });
