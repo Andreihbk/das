@@ -8,17 +8,17 @@ const featuresData = [
   {
     title: "Custom Solutions",
     description: "We offer tailor-made solutions that fit your specific business requirements.",
-    image: "/z.jpg", // Update with your actual image path
+    image: "/z.jpg",
   },
   {
     title: "24/7 Support",
     description: "Our dedicated support team is available around the clock to assist you.",
-    image: "/clock.jpg", // Update with your actual image path
+    image: "/clock.jpg",
   },
   {
     title: "Data Security",
     description: "We prioritize data security and ensure your information is protected.",
-    image: "/data.jpg", // Update with your actual image path
+    image: "/data.jpg",
   },
 ];
 
@@ -27,14 +27,14 @@ export default function Features() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false); // Set loading to false after a short delay
-    }, 20); // Adjust the timeout duration as needed
+      setLoading(false);
+    }, 20);
 
-    return () => clearTimeout(timer); // Cleanup the timer
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-20 pt-24 sm:pt-32 pb-24 sm:pb-32 font-[family-name:var(--font-geist-sans)]">
       <main className={`flex flex-col gap-8 flex-grow items-center sm:items-start ${!loading ? 'fade-in' : 'opacity-0'}`}>
         <h1 className="text-3xl sm:text-5xl font-bold text-center">Our Features</h1>
         
@@ -44,7 +44,7 @@ export default function Features() {
               key={index} 
               className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2"
             >
-              <div className="flex justify-center mb-4"> {/* Center the image */}
+              <div className="flex justify-center mb-4">
                 <Image
                   src={feature.image}
                   alt={feature.title}
