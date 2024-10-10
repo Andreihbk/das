@@ -13,8 +13,7 @@ export default function Home() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [ctaOpacity, setCtaOpacity] = useState(0);
   const [additionalContentOpacity, setAdditionalContentOpacity] = useState(0);
-  const [servicesVisible, setServicesVisible] = useState(false);
-
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -44,15 +43,7 @@ export default function Home() {
         setCtaOpacity(0);
       }
     }
-    const servicesSection = document.getElementById("services-section");
-      if (servicesSection) {
-        const servicesSectionTop = servicesSection.getBoundingClientRect().top;
-        if (servicesSectionTop < windowHeight && servicesSectionTop > 0) {
-          setServicesVisible(true);
-        } else {
-          setServicesVisible(false);
-        }
-      }
+   
 
 
     if (additionalContentSection) {
