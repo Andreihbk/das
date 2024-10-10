@@ -97,13 +97,20 @@ export default function Home() {
         {/* Full Width Image Section with Animation */}
         <section
           id="image-section"
-          className={`w-full flex justify-center overflow-hidden transition-all ${imageVisible ? 'fade-in-scale' : 'opacity-0 scale-90'}`} // Added scale effect
+          className={`w-screen h-auto flex justify-center overflow-hidden transition-all ${imageVisible ? 'fade-in-scale' : 'opacity-0 scale-90'}`} // Full width and height auto
           style={{ transition: "opacity 500ms ease-in-out, transform 500ms ease-in-out" }}  // Transition for both opacity and scale
         >
-          <div className="relative w-full h-40 sm:h-60">
-            <Image className="absolute inset-0 object-cover w-full h-full" src="/1.jpg" alt="Business logo" fill priority />
+          <div className="relative w-full h-[400px] sm:h-[600px]">  {/* Set height for the image container */}
+            <Image
+              className="absolute inset-0 object-cover w-full h-full"  // Full width and height for the image
+              src="/1.jpg"
+              alt="Business logo"
+              fill
+              priority
+            />
           </div>
         </section>
+
 
         {/* Call to Action */}
         <section
