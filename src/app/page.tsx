@@ -9,11 +9,12 @@ import Spinner from "./components/Spinner";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [hasScrolled, setHasScrolled] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
-  const [ctaOpacity, setCtaOpacity] = useState(0);
-  const [additionalContentOpacity, setAdditionalContentOpacity] = useState(0);
-  
+  const [ctaOpacity, setCtaOpacity] = useState(1);
+  const [additionalContentOpacity, setAdditionalContentOpacity] = useState(1);
+  const [imageVisible, setImageVisible] = useState(false); // Changed from opacity to visibility
+
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -24,39 +25,34 @@ export default function Home() {
   }, []);
 
   const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    setHasScrolled(scrollTop > 50);
-
     const windowHeight = window.innerHeight;
+
     const ctaSection = document.getElementById("cta-section");
     const additionalContentSection = document.getElementById("additional-content-section");
+    const imageSection = document.getElementById("image-section");
 
+    // CTA Section Visibility
     if (ctaSection) {
-      const ctaSectionTop = ctaSection.getBoundingClientRect().top;
-      if (ctaSectionTop < windowHeight && ctaSectionTop > windowHeight * 0.75) {
-        const newCtaOpacity = 1 - ((ctaSectionTop - windowHeight * 0.75) / (windowHeight * 0.25));
-        setCtaOpacity(Math.max(0, Math.min(newCtaOpacity, 1)));
-      } else if (ctaSectionTop < windowHeight * 0.75) {
-        const newCtaOpacity = (ctaSectionTop + windowHeight * 0.25) / windowHeight;
-        setCtaOpacity(Math.max(0, Math.min(newCtaOpacity, 1)));
-      } else {
-        setCtaOpacity(0);
-      }
+      const ctaSectionRect = ctaSection.getBoundingClientRect();
+      const distanceFromViewportCenter = Math.abs(ctaSectionRect.top + ctaSectionRect.height / 2 - windowHeight / 2);
+      const opacity = distanceFromViewportCenter < windowHeight * 0.5 ? 1 : 0;
+      setCtaOpacity(opacity);
     }
-   
 
-
+    // Additional Content Visibility
     if (additionalContentSection) {
-      const additionalContentTop = additionalContentSection.getBoundingClientRect().top;
-      if (additionalContentTop < windowHeight && additionalContentTop > windowHeight * 0.75) {
-        const newAdditionalContentOpacity = 1 - ((additionalContentTop - windowHeight * 0.75) / (windowHeight * 0.25));
-        setAdditionalContentOpacity(Math.max(0, Math.min(newAdditionalContentOpacity, 1)));
-      } else if (additionalContentTop < windowHeight * 0.75) {
-        const newAdditionalContentOpacity = (additionalContentTop + windowHeight * 0.25) / windowHeight;
-        setAdditionalContentOpacity(Math.max(0, Math.min(newAdditionalContentOpacity, 1)));
-      } else {
-        setAdditionalContentOpacity(0);
-      }
+      const additionalContentRect = additionalContentSection.getBoundingClientRect();
+      const distanceFromViewportCenter = Math.abs(additionalContentRect.top + additionalContentRect.height / 2 - windowHeight / 2);
+      const opacity = distanceFromViewportCenter < windowHeight * 0.5 ? 1 : 0;
+      setAdditionalContentOpacity(opacity);
+    }
+
+    // Image Section Visibility and Animation Trigger
+    if (imageSection) {
+      const imageSectionRect = imageSection.getBoundingClientRect();
+      const distanceFromViewportCenter = Math.abs(imageSectionRect.top + imageSectionRect.height / 2 - windowHeight / 2);
+      const isVisible = distanceFromViewportCenter < windowHeight * 0.5;
+      setImageVisible(isVisible);
     }
   };
 
@@ -75,7 +71,10 @@ export default function Home() {
 
       <main className="flex flex-col gap-10 flex-grow items-center w-full">
         {/* Hero Section */}
-        <section className={`flex flex-col justify-center items-center text-center h-screen ${heroVisible ? 'fade-in' : 'opacity-0'} transition-opacity duration-500`}>
+        <section
+          className={`flex flex-col justify-center items-center text-center h-screen ${heroVisible ? 'fade-in' : 'opacity-0'}`}
+          style={{ transition: "opacity 100ms ease-in-out" }}
+        >
         <h1 className="text-2xl sm:text-4xl font-bold">Welcome to DAS - Tailored IT Solutions for Your Business Needs</h1>
 <p       className="mt-2 text-base sm:text-lg px-4 sm:px-0">Innovative, data-driven services to accelerate your business growth.</p>
 
@@ -104,18 +103,29 @@ export default function Home() {
 
         </section>
 
-        {/* Full Width Image Section */}
-        <section className={`w-full flex justify-center overflow-hidden ${hasScrolled ? 'fade-in' : ''}`}>
-          <div className="relative w-full h-40 sm:h-60">
-            <Image className="absolute inset-0 object-cover w-full h-full" src="/1.jpg" alt="Business logo" fill priority />
+        {/* Full Width Image Section with Animation */}
+        <section
+          id="image-section"
+          className={`w-screen h-auto flex justify-center overflow-hidden transition-all ${imageVisible ? 'fade-in-scale' : 'opacity-0 scale-90'}`} // Full width and height auto
+          style={{ transition: "opacity 500ms ease-in-out, transform 500ms ease-in-out" }}  // Transition for both opacity and scale
+        >
+          <div className="relative w-full h-[400px] sm:h-[600px]">  {/* Set height for the image container */}
+            <Image
+              className="absolute inset-0 object-cover w-full h-full"  // Full width and height for the image
+              src="/1.jpg"
+              alt="Business logo"
+              fill
+              priority
+            />
           </div>
         </section>
+
 
         {/* Call to Action */}
         <section
           id="cta-section"
-          className="text-center mt-6 flex flex-col items-center max-w-3xl w-full transition-opacity duration-500"
-          style={{ opacity: ctaOpacity }}
+          className="text-center mt-6 flex flex-col items-center max-w-3xl w-full transition-opacity"
+          style={{ opacity: ctaOpacity, transition: "opacity 100ms ease-in-out" }}
         >
           <h2 className="text-lg sm:text-xl font-semibold">Ready to get started?</h2>
           <Link href="/contact" className="mt-4 inline-block rounded-full bg-blue-600 dark:bg-blue-500 text-white transition-colors duration-200 hover:bg-blue-700 dark:hover:bg-blue-400 flex items-center justify-center text-base h-10 px-5">
@@ -125,8 +135,8 @@ export default function Home() {
 
         <section
           id="additional-content-section"
-          className="flex-grow text-center max-w-3xl w-full transition-opacity duration-500"
-          style={{ opacity: additionalContentOpacity }}
+          className="flex-grow text-center max-w-3xl w-full transition-opacity"
+          style={{ opacity: additionalContentOpacity, transition: "opacity 100ms ease-in-out" }}
         >
           <h2 className="text-xl sm:text-2xl font-bold mt-10">Why Choose Us?</h2>
           <p className="mt-4">
@@ -145,10 +155,9 @@ export default function Home() {
             Let us help you transform your business with cutting-edge technology and personalized support. Reach out today to learn more!
           </p>
         </section>
-
         
         {/* Extra spacing before the footer */}
-        <div className="h-20 sm:h-32" /> {/* Add more height to ensure spacing before the footer */}
+        <div className="h-20 sm:h-32" />
       </main>
 
       <Footer />

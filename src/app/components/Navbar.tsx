@@ -22,10 +22,10 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full bg-gray-800 text-white shadow-md z-50">
       <div className="container mx-auto flex justify-between items-center py-2 px-4 sm:py-4 sm:px-8"> {/* Reduced padding for mobile */}
         {/* Logo and Title Section */}
-        <div className="flex items-center gap-2"> {/* Reduced gap */}
+        <Link href="/" className="flex items-center gap-2"> {/* Wrapped logo and title in Link */}
           <Image src="/logo.png" alt="Logo" width={30} height={30} className="sm:w-12 sm:h-12" /> {/* Smaller logo for mobile */}
           <h1 className="text-lg sm:text-2xl font-bold">Dani & Andrei Services</h1> {/* Smaller title for mobile */}
-        </div>
+        </Link>
 
         {/* Navigation Links Section for Desktop */}
         <div className="hidden sm:flex items-center"> {/* Hidden on small screens */}
