@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface FormData {
   name: string;
@@ -18,6 +18,14 @@ export default function Contact() {
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<"info" | "success" | "error">("info");
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation for form appearance
+    setTimeout(() => {
+      setIsFormVisible(true);
+    }, 300); // Delay before showing the form
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,19 +85,27 @@ export default function Contact() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       <main className="flex flex-col flex-grow items-center justify-center p-8 sm:p-20">
-        <h1 className="text-3xl font-bold mb-4">Contact Us</h1>
-        {loading && <div>Loading...</div>}
+        <h1 className="text-3xl font-bold mb-4 fade-in">Contact Us</h1>
+
+        {/* Display loading spinner and message */}
+        {loading && <div className="animate-spin mb-4">Loading...</div>}
         {message && (
           <div
             aria-live="polite"
-            className={`mt-4 p-2 rounded ${messageType === 'success' ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}
+            className={`mt-4 p-2 rounded transition-all duration-500 ease-in-out transform ${
+              messageType === 'success' ? 'bg-green-200 text-green-800 scale-105' : 'bg-red-200 text-red-800 scale-105'
+            }`}
           >
             {message}
           </div>
         )}
+
+        {/* Animated form appearance */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-md"
+          className={`bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-md transition-opacity duration-1000 ease-out ${
+            isFormVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
         >
           <div className="mb-4">
             <label className="block text-lg mb-2">Name</label>
@@ -125,7 +141,9 @@ export default function Contact() {
           </div>
           <button
             type="submit"
-            className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transform transition-all duration-300 ${
+              loading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
+            }`}
             disabled={loading}
           >
             Submit
