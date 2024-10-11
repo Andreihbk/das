@@ -75,14 +75,18 @@ export default function Home() {
           className={`flex flex-col justify-center items-center text-center h-screen ${heroVisible ? 'fade-in' : 'opacity-0'}`}
           style={{ transition: "opacity 100ms ease-in-out" }}
         >
+
         <h1 className="text-2xl sm:text-4xl font-bold">Welcome to DAS - Tailored IT Solutions for Your Business Needs</h1>
 <p       className="mt-2 text-base sm:text-lg px-4 sm:px-0">Innovative, data-driven services to accelerate your business growth.</p>
 
+
           
           {/* Services, Features, and Testimonials Section */}
+
           <section className={`flex flex-col sm:flex-row justify-center items-center w-full mt-8 ${heroVisible ? 'fade-in' : 'opacity-0'} transition-opacity duration-500`}>
             <Link href="/services"
               className="bg-gray-100 dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg text-center flex-1 mx-1 sm:m-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-110 hover:border-blue-500 hover:border-2 hover:shadow-md">
+
               <h2 className="font-semibold text-md sm:text-lg">Our Services</h2>
               <p className="mt-1 sm:mt-2">We offer a variety of services to help you succeed.</p>
             </Link>
@@ -155,7 +159,7 @@ export default function Home() {
             Let us help you transform your business with cutting-edge technology and personalized support. Reach out today to learn more!
           </p>
         </section>
-        
+
         {/* Extra spacing before the footer */}
         <div className="h-20 sm:h-32" />
       </main>
