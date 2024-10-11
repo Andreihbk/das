@@ -12,7 +12,7 @@ export default function Home() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [ctaOpacity, setCtaOpacity] = useState(1);
   const [additionalContentOpacity, setAdditionalContentOpacity] = useState(1);
-  const [imageVisible, setImageVisible] = useState(false); // Changed from opacity to visibility
+  const [imageVisible, setImageVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -79,30 +79,36 @@ export default function Home() {
 
           {/* Services, Features, and Testimonials Section */}
           <section className={`flex flex-col sm:flex-row justify-center items-center w-full mt-8 ${heroVisible ? 'fade-in' : 'opacity-0'}`} style={{ transition: "opacity 100ms ease-in-out" }}>
-            <Link href="/services" className="bg-gray-100 dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg text-center flex-1 mx-1 sm:m-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white mb-4">
-              <h2 className="font-semibold text-md sm:text-lg">Our Services</h2>
-              <p className="mt-1 sm:mt-2">We offer a variety of services to help you succeed.</p>
-            </Link>
-            <Link href="/features" className="bg-gray-100 dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg text-center flex-1 mx-1 sm:m-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white mb-4">
-              <h2 className="font-semibold text-md sm:text-lg">Features</h2>
-              <p className="mt-1 sm:mt-2">Discover the unique features that set us apart.</p>
-            </Link>
-            <Link href="/testimonials" className="bg-gray-100 dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg text-center flex-1 mx-1 sm:m-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white mb-4">
-              <h2 className="font-semibold text-md sm:text-lg">Testimonials</h2>
-              <p className="mt-1 sm:mt-2">Hear what our satisfied clients say about us.</p>
-            </Link>
+            {["/services", "/features", "/testimonials"].map((link, index) => (
+              <Link 
+                key={index}
+                href={link} 
+                className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-grow mx-1 my-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+              >
+                <h2 className="font-semibold text-md sm:text-lg">{
+                  link === "/services" ? "Our Services" :
+                  link === "/features" ? "Features" :
+                  "Testimonials"
+                }</h2>
+                <p className="mt-1 sm:mt-2">{
+                  link === "/services" ? "We offer a variety of services to help you succeed." :
+                  link === "/features" ? "Discover the unique features that set us apart." :
+                  "Hear what our satisfied clients say about us."
+                }</p>
+              </Link>
+            ))}
           </section>
         </section>
 
         {/* Full Width Image Section with Animation */}
         <section
           id="image-section"
-          className={`w-screen h-auto flex justify-center overflow-hidden transition-all ${imageVisible ? 'fade-in-scale' : 'opacity-0 scale-90'}`} // Full width and height auto
-          style={{ transition: "opacity 500ms ease-in-out, transform 500ms ease-in-out" }}  // Transition for both opacity and scale
+          className={`w-screen h-auto flex justify-center overflow-hidden transition-all ${imageVisible ? 'fade-in-scale' : 'opacity-0 scale-90'}`}
+          style={{ transition: "opacity 500ms ease-in-out, transform 500ms ease-in-out" }}
         >
-          <div className="relative w-full h-[400px] sm:h-[600px]">  {/* Set height for the image container */}
+          <div className="relative w-full h-[400px] sm:h-[600px]">
             <Image
-              className="absolute inset-0 object-cover w-full h-full"  // Full width and height for the image
+              className="absolute inset-0 object-cover w-full h-full"
               src="/1.jpg"
               alt="Business logo"
               fill
@@ -110,7 +116,6 @@ export default function Home() {
             />
           </div>
         </section>
-
 
         {/* Call to Action */}
         <section

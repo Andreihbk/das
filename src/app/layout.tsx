@@ -29,20 +29,17 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="shortcut icon" href="/favicon.ico" />
-        {/* Apple-specific meta tags for customizing the area around the notch */}
-        <meta name="theme-color" content="#f8f8f8" />
+        <meta name="theme-color" content="#1F2937" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ backgroundColor: "#f8f8f8" }} // Ensure consistent background color
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`} // Ensure body covers full height
+        style={{ backgroundColor: "#1F2937" }} 
       >
-        <Navbar />  {/* Navbar included here */}
-
-        <main>{children}</main>  {/* Page-specific content */}
-
-        <Footer />  {/* Footer included here */}
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -35,7 +35,7 @@ export default function Services() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-20 pt-24 sm:pt-32 pb-24 sm:pb-32 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col min-h-screen p-8 pb-20 gap-16 sm:p-20 pt-24 sm:pt-32 pb-24 sm:pb-32 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900">
       <main className={`flex flex-col gap-8 flex-grow items-center sm:items-start ${!loading ? 'fade-in' : 'opacity-0'}`}>
         <h1 className="text-3xl sm:text-5xl font-bold text-center">Our Services</h1>
         
