@@ -53,20 +53,26 @@ const Navbar = () => {
 
         {/* Burger Menu for Mobile */}
         <div className="sm:hidden">
-          <button onClick={toggleMenu} className="relative flex flex-col items-center justify-center focus:outline-none">
+          <button
+            onClick={toggleMenu}
+            className="relative flex flex-col items-center justify-center focus:outline-none"
+          >
+            {/* Top Line */}
             <div
               className={`w-8 h-1 bg-white mb-1 transition-transform duration-300 ease-in-out ${
-                menuOpen ? 'transform rotate-45 translate-y-2' : ''
+                menuOpen ? 'transform rotate-45 translate-y-2' : 'transform translate-y-0'
               }`}
             ></div>
+            {/* Middle Line (becomes invisible when open) */}
             <div
               className={`w-8 h-1 bg-white mb-1 transition-opacity duration-300 ease-in-out ${
-                menuOpen ? 'opacity-0' : ''
+                menuOpen ? 'opacity-0' : 'opacity-100'
               }`}
             ></div>
+            {/* Bottom Line */}
             <div
               className={`w-8 h-1 bg-white transition-transform duration-300 ease-in-out ${
-                menuOpen ? 'transform -rotate-45 -translate-y-2' : ''
+                menuOpen ? 'transform -rotate-45 -translate-y-2' : 'transform translate-y-0'
               }`}
             ></div>
           </button>
@@ -75,8 +81,8 @@ const Navbar = () => {
 
       {/* Mobile Menu Items */}
       <div
-        className={`flex flex-col items-center bg-gray-700 py-2 sm:hidden transition-all duration-500 ease-in-out ${
-          menuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+        className={`flex flex-col items-center bg-gray-700 sm:hidden transition-all duration-500 ease-in-out ${
+          menuOpen ? 'max-h-screen opacity-100 py-2' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
       >
         {[
