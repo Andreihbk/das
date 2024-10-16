@@ -137,27 +137,61 @@ export default function Home() {
         </section>
 
         <section
-          id="additional-content-section"
-          className="flex-grow text-center max-w-3xl w-full transition-opacity"
-          style={{ opacity: additionalContentOpacity, transition: "opacity 100ms ease-in-out" }}
-        >
-          <h2 className="text-xl sm:text-2xl font-bold mt-10">Why Choose Us?</h2>
-          <p className="mt-4">
-            At DAS, we provide tailored IT solutions designed to meet your unique business needs. Our team of experts uses the latest technology to deliver high-quality, data-driven solutions that help you stay ahead of the competition.
-          </p>
-          <p className="mt-4">
-            We specialize in custom development, ensuring that our services align perfectly with your goals. Whether you need advanced analytics, AI-driven insights, or a responsive, user-friendly website, we’ve got you covered.
-          </p>
-          <ul className="list-disc mt-4 pl-5">
-            <li>Customized solutions for your business</li>
-            <li>Data-driven approaches for growth</li>
-            <li>Responsive, user-friendly designs</li>
-            <li>Expert support every step of the way</li>
-          </ul>
-          <p className="mt-4">
-            Let us help you transform your business with cutting-edge technology and personalized support. Reach out today to learn more!
-          </p>
-        </section>
+  id="additional-content-section"
+  className="flex-grow text-center max-w-4xl w-full transition-opacity px-4 sm:px-0"
+  style={{ opacity: additionalContentOpacity, transition: "opacity 100ms ease-in-out" }}
+>
+  <h2 className="text-2xl sm:text-3xl font-bold mt-12">Why Choose Us?</h2>
+  
+  <p className="mt-6 text-lg sm:text-xl leading-relaxed">
+    At DAS, we’re more than just an IT services provider – we’re your partner in growth. 
+    We pride ourselves on delivering tailored IT solutions that are uniquely designed to meet 
+    your specific business needs. In an ever-evolving digital landscape, staying competitive 
+    requires innovation, agility, and the right technology to drive success.
+  </p>
+  
+  <p className="mt-4 text-lg sm:text-xl leading-relaxed">
+    Whether you need advanced data analytics, AI-powered insights, or a fully responsive website, 
+    our team of experienced professionals is here to provide you with state-of-the-art solutions 
+    that streamline your operations, improve efficiency, and help you scale. We don’t just solve 
+    problems – we unlock opportunities for your business.
+  </p>
+
+  <ul className="list-none mt-8 space-y-4 text-lg sm:text-xl">
+    <li className="flex justify-center items-center">
+      <div className="flex items-center">
+        <div className="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+        <span>Customized solutions tailored to your unique goals</span>
+      </div>
+    </li>
+    <li className="flex justify-center items-center">
+      <div className="flex items-center">
+        <div className="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+        <span>Data-driven strategies to fuel sustainable growth</span>
+      </div>
+    </li>
+    <li className="flex justify-center items-center">
+      <div className="flex items-center">
+        <div className="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+        <span>Responsive designs that deliver seamless user experiences</span>
+      </div>
+    </li>
+    <li className="flex justify-center items-center">
+      <div className="flex items-center">
+        <div className="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+        <span>24/7 expert support to ensure your success</span>
+      </div>
+    </li>
+  </ul>
+
+  <p className="mt-8 text-lg sm:text-xl leading-relaxed">
+    Our mission is to empower businesses like yours to thrive in today’s competitive market by 
+    providing cutting-edge technology and personalized support every step of the way. Let us 
+    transform your vision into reality and give you the tools to excel in your industry. 
+    Ready to elevate your business? Get in touch today!
+  </p>
+</section>
+
 
         {/* Extra spacing before the footer */}
         <div className="h-20 sm:h-32" />
