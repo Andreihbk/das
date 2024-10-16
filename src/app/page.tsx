@@ -3,12 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Spinner from "./components/Spinner";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
   const [heroVisible, setHeroVisible] = useState(false);
   const [ctaOpacity, setCtaOpacity] = useState(1);
   const [additionalContentOpacity, setAdditionalContentOpacity] = useState(1);
@@ -17,7 +14,6 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
       setHeroVisible(true);
     }, 20);
 
@@ -61,9 +57,6 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // if (loading) {
-  //   return <Spinner />;
-  // }
 
   return (
     <div className="flex flex-col min-h-screen p-4 sm:p-8 gap-10 sm:gap-16 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900">
