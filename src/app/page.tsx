@@ -60,13 +60,13 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (loading) {
-    return <Spinner />;
-  }
+  // if (loading) {
+  //   return <Spinner />;
+  // }
 
   return (
     <div className="flex flex-col min-h-screen p-4 sm:p-8 gap-10 sm:gap-16 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="flex flex-col gap-10 flex-grow items-center w-full">
         {/* Hero Section */}
@@ -83,14 +83,15 @@ export default function Home() {
               <Link 
                 key={index}
                 href={link} 
-                className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-grow mx-1 my-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+                className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-grow mx-2 my-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+                style={{ width: "100%", maxWidth: "300px" }}  // Limit width for mobile
               >
-                <h2 className="font-semibold text-md sm:text-lg">{
+                <h2 className="font-semibold text-sm sm:text-lg">{ 
                   link === "/services" ? "Our Services" :
                   link === "/features" ? "Features" :
                   "Testimonials"
                 }</h2>
-                <p className="mt-1 sm:mt-2">{
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm">{
                   link === "/services" ? "We offer a variety of services to help you succeed." :
                   link === "/features" ? "Discover the unique features that set us apart." :
                   "Hear what our satisfied clients say about us."
