@@ -150,12 +150,16 @@ export default function Home() {
     requires innovation, agility, and the right technology to drive success.
   </p>
   
+  <div className="h-20 sm:h-32" />
+
   <p className="mt-4 text-lg sm:text-xl leading-relaxed">
     Whether you need advanced data analytics, AI-powered insights, or a fully responsive website, 
     our team of experienced professionals is here to provide you with state-of-the-art solutions 
     that streamline your operations, improve efficiency, and help you scale. We don’t just solve 
     problems – we unlock opportunities for your business.
   </p>
+
+  <div className="h-20 sm:h-32" />
 
   <ul className="list-none mt-8 space-y-4 text-lg sm:text-xl">
     <li className="flex justify-center items-center">
@@ -183,6 +187,8 @@ export default function Home() {
       </div>
     </li>
   </ul>
+
+  <div className="h-20 sm:h-32" />
 
   <p className="mt-8 text-lg sm:text-xl leading-relaxed">
     Our mission is to empower businesses like yours to thrive in today’s competitive market by 
