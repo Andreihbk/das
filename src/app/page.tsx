@@ -80,7 +80,7 @@ export default function Home() {
               <Link 
                 key={index}
                 href={link} 
-                className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-grow mx-2 my-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
+                className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-grow mx-2 my-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-110 hover:border-blue-500 hover:border-2 hover:shadow-md"
                 style={{ width: "100%", maxWidth: "300px" }}  // Limit width for mobile
               >
                 <h2 className="font-semibold text-sm sm:text-lg">{ 
