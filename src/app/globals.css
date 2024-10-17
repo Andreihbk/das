@@ -28,11 +28,17 @@ body {
   }
 }
 
-/* Add these styles to your global CSS or a module CSS file */
+
 .fade-in {
   opacity: 0;
   transform: translateY(20px); /* Optional: add some vertical movement */
   animation: fadeIn 0.5s forwards; /* Adjust duration as needed */
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 @keyframes fadeIn {

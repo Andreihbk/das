@@ -43,7 +43,7 @@ export default function Services() {
           {servicesData.map((service, index) => (
             <div 
               key={index} 
-              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2"
+              className="service-card bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 transition-all duration-300 ease-in-out"
             >
               <div className="flex justify-center mb-4">
                 <Image
