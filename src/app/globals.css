@@ -29,6 +29,17 @@ body {
 }
 
 
+
+
+.zoom-in {
+  transition: transform 0.3s ease;
+}
+
+.zoom-in:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(20px); /* Optional: add some vertical movement */
@@ -42,6 +53,10 @@ body {
 }
 
 @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);

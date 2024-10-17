@@ -42,7 +42,7 @@ export default function Features() {
           {featuresData.map((feature, index) => (
             <div 
               key={index} 
-              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2"
+              className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-1 m-2 zoom-in"
             >
               <div className="flex justify-center mb-4">
                 <Image
@@ -58,6 +58,7 @@ export default function Features() {
             </div>
           ))}
         </section>
+
 
         <Link 
           href="/" 
