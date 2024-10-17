@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Footer from "./components/Footer";
+
 
 export default function Home() {
   const [heroVisible, setHeroVisible] = useState(false);
@@ -196,7 +196,7 @@ export default function Home() {
         <div className="h-20 sm:h-32" />
       </main>
 
-      <Footer />
+  
     </div>
   );
 }
