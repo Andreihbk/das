@@ -6,10 +6,10 @@ import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 
 export default function Home() {
-  const [heroVisible, setHeroVisible] = useState(false);
-  const [ctaVisible, setCtaVisible] = useState(false);
-  const [additionalContentVisible, setAdditionalContentVisible] = useState(false);
-  const [imageVisible, setImageVisible] = useState(false);
+  const [heroVisible, setHeroVisible] = useState<boolean>(false);
+  const [ctaVisible, setCtaVisible] = useState<boolean>(false);
+  const [additionalContentVisible, setAdditionalContentVisible] = useState<boolean>(false);
+  const [imageVisible, setImageVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -19,48 +19,47 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleIntersection = (entries, observer) => {
+    const handleIntersection = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          if (entry.target.id === "cta-section") {
+          const id = entry.target.id as string; // Ensure id is treated as a string
+          if (id === "cta-section") {
             setCtaVisible(true);
-          } else if (entry.target.id === "additional-content-section") {
+          } else if (id === "additional-content-section") {
             setAdditionalContentVisible(true);
-          } else if (entry.target.id === "image-section") {
+          } else if (id === "image-section") {
             setImageVisible(true);
           }
         }
       });
     };
 
-    const observerOptions = {
-      root: null, // relative to the viewport
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
       rootMargin: "0px",
-      threshold: 0.2, // trigger when 20% of the section is visible
+      threshold: 0.2,
     };
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
     // Observe each section
-    const ctaSection = document.getElementById("cta-section");
-    const additionalContentSection = document.getElementById("additional-content-section");
-    const imageSection = document.getElementById("image-section");
+    const sections = ["cta-section", "additional-content-section", "image-section"] as const;
 
-    if (ctaSection) observer.observe(ctaSection);
-    if (additionalContentSection) observer.observe(additionalContentSection);
-    if (imageSection) observer.observe(imageSection);
+    sections.forEach((sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (section) observer.observe(section);
+    });
 
     return () => {
-      if (ctaSection) observer.unobserve(ctaSection);
-      if (additionalContentSection) observer.unobserve(additionalContentSection);
-      if (imageSection) observer.unobserve(imageSection);
+      sections.forEach((sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) observer.unobserve(section);
+      });
     };
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen p-4 sm:p-8 gap-10 sm:gap-16 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900">
-      {/* <Navbar /> */}
-
       <main className="flex flex-col gap-10 flex-grow items-center w-full">
         {/* Hero Section */}
         <section
@@ -77,7 +76,7 @@ export default function Home() {
                 key={index}
                 href={link} 
                 className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg text-center flex-grow mx-2 my-2 max-w-full sm:max-w-xs transition-transform duration-200 hover:scale-105 hover:bg-blue-500 hover:text-white"
-                style={{ width: "100%", maxWidth: "300px" }}  // Limit width for mobile
+                style={{ width: "100%", maxWidth: "300px" }}
               >
                 <h2 className="font-semibold text-sm sm:text-lg">{ 
                   link === "/services" ? "Our Services" :
@@ -117,7 +116,7 @@ export default function Home() {
         <section
           id="cta-section"
           className="text-center mt-6 flex flex-col items-center max-w-3xl w-full transition-opacity"
-          style={{transition: "opacity 100ms ease-in-out" }}
+          style={{ transition: "opacity 100ms ease-in-out" }}
         >
           <h2 className="text-lg sm:text-2xl font-semibold">Ready to get started?</h2>
           <Link href="/contact" className="mt-4 inline-block rounded-full bg-blue-600 dark:bg-blue-500 text-white transition-colors duration-200 hover:bg-blue-700 dark:hover:bg-blue-400 flex items-center justify-center text-lg sm:text-xl h-12 sm:h-14 px-6">
@@ -141,30 +140,19 @@ export default function Home() {
           <div className="h-12"></div>
 
           <ul className="list-none mt-10 space-y-6 text-lg sm:text-xl px-6">
-            <li className="flex justify-center items-center">
-              <div className="flex items-center">
-                <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-600 rounded-full mr-2 sm:mr-4"></div>
-                <span className="text-base sm:text-lg">Customized solutions tailored to your unique goals</span>
-              </div>
-            </li>
-            <li className="flex justify-center items-center">
-              <div className="flex items-center">
-                <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-600 rounded-full mr-2 sm:mr-4"></div>
-                <span className="text-base sm:text-lg">Data-driven strategies to fuel sustainable growth</span>
-              </div>
-            </li>
-            <li className="flex justify-center items-center">
-              <div className="flex items-center">
-                <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-600 rounded-full mr-2 sm:mr-4"></div>
-                <span className="text-base sm:text-lg">Responsive designs that deliver seamless user experiences</span>
-              </div>
-            </li>
-            <li className="flex justify-center items-center">
-              <div className="flex items-center">
-                <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-600 rounded-full mr-2 sm:mr-4"></div>
-                <span className="text-base sm:text-lg">24/7 expert support to ensure your success</span>
-              </div>
-            </li>
+            {[
+              "Customized solutions tailored to your unique goals",
+              "Data-driven strategies to fuel sustainable growth",
+              "Responsive designs that deliver seamless user experiences",
+              "24/7 expert support to ensure your success"
+            ].map((item, index) => (
+              <li key={index} className="flex justify-center items-center">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-600 rounded-full mr-2 sm:mr-4"></div>
+                  <span className="text-base sm:text-lg">{item}</span>
+                </div>
+              </li>
+            ))}
           </ul>
 
           <div className="h-12"></div>
@@ -174,7 +162,6 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Extra spacing before the footer */}
         <div className="h-16"></div>
       </main>
       <Footer />
