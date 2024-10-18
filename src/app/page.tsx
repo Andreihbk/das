@@ -20,7 +20,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const handleIntersection = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.id as string;
