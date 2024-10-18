@@ -10,6 +10,7 @@ export default function Home() {
   const [ctaVisible, setCtaVisible] = useState<boolean>(false);
   const [additionalContentVisible, setAdditionalContentVisible] = useState<boolean>(false);
   const [imageVisible, setImageVisible] = useState<boolean>(false);
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,7 +23,7 @@ export default function Home() {
     const handleIntersection = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const id = entry.target.id as string; // Ensure id is treated as a string
+          const id = entry.target.id as string;
           if (id === "cta-section") {
             setCtaVisible(true);
           } else if (id === "additional-content-section") {
@@ -30,6 +31,8 @@ export default function Home() {
           } else if (id === "image-section") {
             setImageVisible(true);
           }
+        } else {
+          setFadeOut(true); // Fade out when not visible
         }
       });
     };
@@ -41,9 +44,7 @@ export default function Home() {
     };
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-    // Observe each section
-    const sections = ["cta-section", "additional-content-section", "image-section"] as const;
+    const sections = ["cta-section", "additional-content-section", "image-section"];
 
     sections.forEach((sectionId) => {
       const section = document.getElementById(sectionId);
@@ -59,7 +60,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen p-4 sm:p-8 gap-10 sm:gap-16 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900">
+    <div className={`flex flex-col min-h-screen p-4 sm:p-8 gap-10 sm:gap-16 font-[family-name:var(--font-geist-sans)] bg-gray-50 dark:bg-gray-900 ${fadeOut ? 'fade-out' : ''}`}>
       <main className="flex flex-col gap-10 flex-grow items-center w-full">
         {/* Hero Section */}
         <section
@@ -115,7 +116,7 @@ export default function Home() {
         {/* Call to Action */}
         <section
           id="cta-section"
-          className="text-center mt-6 flex flex-col items-center max-w-3xl w-full transition-opacity"
+          className={`text-center mt-6 flex flex-col items-center max-w-3xl w-full transition-opacity ${ctaVisible ? 'fade-in' : 'opacity-0'}`}
           style={{ transition: "opacity 100ms ease-in-out" }}
         >
           <h2 className="text-lg sm:text-2xl font-semibold">Ready to get started?</h2>
@@ -146,7 +147,7 @@ export default function Home() {
               "Responsive designs that deliver seamless user experiences",
               "24/7 expert support to ensure your success"
             ].map((item, index) => (
-              <li key={index} className="flex justify-center items-center">
+              <li key={index} className={`flex justify-center items-center ${additionalContentVisible ? 'fade-in' : 'opacity-0'}`} style={{ transition: "opacity 500ms ease-in-out" }}>
                 <div className="flex items-center">
                   <div className="w-4 h-4 sm:w-6 sm:h-6 bg-blue-600 rounded-full mr-2 sm:mr-4"></div>
                   <span className="text-base sm:text-lg">{item}</span>

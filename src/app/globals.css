@@ -60,6 +60,25 @@ body {
   }
 }
 
+/* Fade-in effect for sections */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px); /* Optional: vertical movement for the effect */
+  animation: fadeIn 0.5s forwards; /* Default duration */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Specific class for elements after the image with a slower fade-in */
+.fade-in-slow {
+  animation: fadeIn 1s forwards; /* Slower duration (1 second) */
+}
+
 /* Fade-in and slide-up effect */
 .fade-slide-up {
   opacity: 0;
@@ -71,6 +90,12 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Specific class for elements after the image with a slower fade-in effect */
+.fade-slide-up.fade-in-slow {
+  transition: opacity 1s ease, transform 1s ease; /* Slower transition */
+}
+
 
 /* Bullet points animation */
 .bullet-point {
