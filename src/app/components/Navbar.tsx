@@ -23,8 +23,13 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center py-2 px-4 sm:py-4 sm:px-8">
         {/* Logo and Title Section */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Logo" width={30} height={30} className="sm:w-12 sm:h-12" />
-          <h1 className="text-lg sm:text-2xl font-bold">Dani & Andrei Services</h1>
+          <Image 
+            src="/logo.png" 
+            alt="Logo" 
+            width={40} height={40} 
+            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"  // Adjusted size for consistency
+          />
+          <h1 className="text-lg sm:text-2xl font-bold whitespace-nowrap">Dani & Andrei Services</h1>
         </Link>
 
         {/* Navigation Links Section for Desktop */}
