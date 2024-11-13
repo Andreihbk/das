@@ -11,4 +11,5 @@ module.exports = {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  verbose: false, // Enable verbose output in Jest
 };

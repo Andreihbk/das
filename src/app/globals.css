@@ -26,6 +26,18 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+  overflow: auto; /* Enable scrolling */
+}
+
+/* Hide scrollbars for all elements */
+* {
+  scrollbar-width: thin; /* Makes the scrollbar minimal in Firefox */
+  scrollbar-color: transparent transparent; /* Hides it visually in Firefox */
+}
+
+*::-webkit-scrollbar {
+  width: 0; /* Hides vertical scrollbar for WebKit browsers */
+  height: 0; /* Hides horizontal scrollbar for WebKit browsers */
 }
 
 /* Utility for text balancing */
@@ -60,20 +72,6 @@ body {
   }
 }
 
-/* Fade-in effect for sections */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px); /* Optional: vertical movement for the effect */
-  animation: fadeIn 0.5s forwards; /* Default duration */
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Specific class for elements after the image with a slower fade-in */
 .fade-in-slow {
   animation: fadeIn 1s forwards; /* Slower duration (1 second) */
@@ -95,7 +93,6 @@ body {
 .fade-slide-up.fade-in-slow {
   transition: opacity 1s ease, transform 1s ease; /* Slower transition */
 }
-
 
 /* Bullet points animation */
 .bullet-point {
