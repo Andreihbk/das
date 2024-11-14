@@ -110,7 +110,7 @@ export default function Home() {
             quality={75} // adjust quality for optimization
             className="absolute inset-0 object-cover w-full h-full"
             loader={({ src }) => `${src}?webp`} // This ensures WebP format for browsers that support it
-            loading="lazy"
+            //loading="lazy"
           />
 
  
