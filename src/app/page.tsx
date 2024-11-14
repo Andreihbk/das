@@ -102,12 +102,14 @@ export default function Home() {
         >
           <div className="relative w-full h-[400px] sm:h-[600px]">
             <Image
-              className="absolute inset-0 object-cover w-full h-full"
               src="/1.jpg"
               alt="Business logo"
-              fill
+              width={1200}  // Set a specific width
+              height={800}  // Set a specific height
               priority
+              className="absolute inset-0 object-cover w-full h-full"
             />
+ 
           </div>
         </section>
 
