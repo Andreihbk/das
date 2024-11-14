@@ -101,13 +101,19 @@ export default function Home() {
           style={{ transition: "opacity 700ms ease-in-out, transform 700ms ease-in-out" }}
         >
           <div className="relative w-full h-[400px] sm:h-[600px]">
-            <Image
-              className="absolute inset-0 object-cover w-full h-full"
-              src="/1.jpg"
-              alt="Business logo"
-              fill
-              priority
-            />
+          <Image
+            src="/1.jpg"
+            alt="Business logo"
+            width={1200} // specify the width of the image
+            height={800} // specify the height of the image
+            priority // ensures the image is preloaded
+            quality={75} // adjust quality for optimization
+            className="absolute inset-0 object-cover w-full h-full"
+            loader={({ src }) => `${src}?webp`} // This ensures WebP format for browsers that support it
+            //loading="lazy"
+          />
+
+ 
           </div>
         </section>
 
